@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="card">
+    <h1 style="margin-bottom: 1rem;">Dashboard</h1>
+    <p style="color: #666;">Welcome back, {{ user.first_name|default:user.email }}!</p>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-bottom: 1rem;">User Information</h2>
+    <table>
+      <tbody>
+        <tr>
+          <td class="font-bold" style="width: 200px;">Email</td>
+          <td>{{ user.email }}</td>
+        </tr>
+        <tr>
+          <td class="font-bold">First Name</td>
+          <td>{{ user.first_name|default:"N/A" }}</td>
+        </tr>
+        <tr>
+          <td class="font-bold">Last Name</td>
+          <td>{{ user.last_name|default:"N/A" }}</td>
+        </tr>
+        <tr>
+          <td class="font-bold">User ID</td>
+          <td style="font-family: monospace; font-size: 0.9rem;">{{ user.username }}</td>
+        </tr>
+        <tr>
+          <td class="font-bold">Email Verified</td>
+          <td>
+             {% comment %} Django User model doesn't store this by default, but we could extend it {% endcomment %}
+             <span class="text-success">✓ Verified</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-bottom: 1rem;">Quick Actions</h2>
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+      <a href="{% url 'profile' %}" class="button button-primary">Edit Profile</a>
+      <button class="button button-secondary">View Settings</button>
+    </div>
+  </div>
+</div>
+{% endblock %}

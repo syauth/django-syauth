@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <h1 style="margin-bottom: 0.5rem;">Profile Settings</h1>
+        <p style="color: #666;">Update your account information</p>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="card">
+        <h2 style="margin-bottom: 1rem; font-size: 1.125rem;">Profile Information</h2>
+        <form method="post" action="{% url 'profile' %}">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="update_profile">
+            
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" value="{{ user.email }}" disabled style="background-color: #f5f5f5; cursor: not-allowed;">
+                <small style="color: #666; font-size: 0.85rem;">Email cannot be changed</small>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">First Name</label>
+                <input type="text" name="first_name" value="{{ user.first_name }}" placeholder="Enter your first name">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Last Name</label>
+                <input type="text" name="last_name" value="{{ user.last_name }}" placeholder="Enter your last name">
+            </div>
+
+            <div style="display: flex; gap: 1rem;">
+                <button type="submit" class="button button-primary">Save Changes</button>
+                <a href="{% url 'dashboard' %}" class="button button-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="card">
+        <h2 style="margin-bottom: 1rem; font-size: 1.125rem;">Security</h2>
+        
+        <form method="post" action="{% url 'profile' %}">
+             {% csrf_token %}
+             <input type="hidden" name="action" value="change_password">
+             
+             <div class="form-group">
+                <label class="form-label">Current Password</label>
+                <input type="password" name="current_password" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">New Password</label>
+                <input type="password" name="new_password" placeholder="At least 8 characters" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Confirm New Password</label>
+                <input type="password" name="confirm_password" required>
+            </div>
+
+            <div style="display: flex; gap: 1rem;">
+                <button type="submit" class="button button-primary" style="flex: 1;">Change Password</button>
+                <button type="button" class="button button-secondary" style="flex: 1;" onclick="this.form.reset()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="card" style="text-align: center; margin-top: 4rem;">
+    <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">
+      Welcome to My App
+    </h1>
+    <p style="font-size: 1.2rem; color: #666; margin-bottom: 2rem;">
+      Secure authentication powered by SyAuth
+    </p>
+
+    <div style="display: flex; gap: 1rem; justify-content: center;">
+      <a href="{% url 'django_syauth:login' %}" class="button button-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">
+        Sign In
+      </a>
+      
+      {% comment %} 
+         Note: In a real app, you would construct these URLs dynamically based on settings.
+         For this example, we assume standard Syauth endpoints.
+      {% endcomment %}
+      <a href="{{ syauth_register_url }}" class="button button-secondary" style="font-size: 1.1rem; padding: 1rem 2rem;">
+        Create Account
+      </a>
+      
+      <a href="{{ syauth_forgot_password_url }}" class="button button-secondary" style="font-size: 1.1rem; padding: 1rem 2rem;">
+        Forgot Password
+      </a>
+    </div>
+
+    <div style="margin-top: 2rem; font-size: 0.9rem; color: #888;">
+      <p>This app uses SyAuth Django SDK for authentication</p>
+      <p>Both sign in and registration redirect to SyAuth hosted pages</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-bottom: 1rem;">Features</h2>
+    <ul style="padding-left: 1.5rem; line-height: 2;">
+      <li>OAuth 2.0 Authorization Code Flow with PKCE</li>
+      <li>Secure token management</li>
+      <li>Protected routes with decorators</li>
+      <li>User profile management</li>
+      <li>Easy integration with SyAuth SDK</li>
+    </ul>
+  </div>
+</div>
+{% endblock %}
