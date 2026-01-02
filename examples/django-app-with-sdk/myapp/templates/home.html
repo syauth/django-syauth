@@ -14,18 +14,6 @@
       <a href="{% url 'django_syauth:login' %}" class="button button-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">
         Sign In
       </a>
-      
-      {% comment %} 
-         Note: In a real app, you would construct these URLs dynamically based on settings.
-         For this example, we assume standard Syauth endpoints.
-      {% endcomment %}
-      <a href="{{ syauth_register_url }}" class="button button-secondary" style="font-size: 1.1rem; padding: 1rem 2rem;">
-        Create Account
-      </a>
-      
-      <a href="{{ syauth_forgot_password_url }}" class="button button-secondary" style="font-size: 1.1rem; padding: 1rem 2rem;">
-        Forgot Password
-      </a>
     </div>
 
     <div style="margin-top: 2rem; font-size: 0.9rem; color: #888;">
